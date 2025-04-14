@@ -19,6 +19,8 @@ const projectInfor = document.querySelector("#project-infor");
 const nameInfor = document.querySelector("#name-infor");
 const desInfor = document.querySelector("#des-infor");
 const logout = document.querySelector("#logout");
+const searchInput = document.querySelector("#search-input");
+
 
 // -------------------------
 // KIỂM TRA TRẠNG THÁI ĐĂNG NHẬP
@@ -417,6 +419,22 @@ function logoutUser(event) {
 
       // Chuyển hướng đến trang đăng nhập
       window.location.href = 'login.html'; // Hoặc URL của trang đăng nhập của bạn
+    }
+  });
+}
+// -------------------------
+// TÌM KIẾM NHIỆM VỤ THEO TÊN
+// -------------------------
+if (searchInput) {
+  searchInput.addEventListener("input", function () {
+    const keyword = this.value.trim().toLowerCase();
+    if (keyword === "") {
+      renderTasks(); // Hiển thị tất cả nhiệm vụ khi ô tìm kiếm trống
+    } else {
+      const filteredTasks = tasks.filter(task =>
+        task.projectId == projectId && task.taskName.toLowerCase().includes(keyword)
+      );
+      renderTasks(filteredTasks); // Gọi lại renderTasks với danh sách nhiệm vụ đã lọc
     }
   });
 }

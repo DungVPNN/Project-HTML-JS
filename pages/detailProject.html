@@ -7,6 +7,31 @@
     <link rel="stylesheet" href="../css/detail.css">
 </head>
 <body>
+    <!-- Member Management Modal -->
+<div id="memberModal2" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Thành viên</h3>
+        <span id="closeMemberModal" class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <table class="member-table">
+          <thead>
+            <tr>
+              <th>Thành viên</th>
+              <th>Vai trò</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="memberTableBody"></tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button id="cancelMemberModal" class="btn-secondary">Đóng</button>
+        <button id="saveMemberRoles" class="btn-primary">Lưu</button>
+      </div>
+    </div>
+  </div>
     <!-- FORM ADD THÀNH VIÊN -->
     <div class="modal" id="memberModal" style="display: none;">
         <div class="modal-content">
@@ -107,7 +132,7 @@
             <a href="home.html" class="nav-link">Quản Lý Dự Án</a>
         </div>
         <div class="nav-right">
-            <a href="" class="nav-link">Dự Án</a>
+            <a href="jobs.html" class="nav-link">Dự Án</a>
             <a href="" class="nav-link">Nhiệm Vụ của tôi</a>
             <a href="" id="logout" class="nav-link">Đăng Xuất</a>
         </div>
@@ -148,7 +173,7 @@
                 <div class="sort-dropdown">
                     <button class="sort-btn">Sắp xếp theo ▼</button>
                 </div>
-                <input type="text" class="search-input" placeholder="Tìm kiếm nhiệm vụ">
+                <input type="text" class="search-input" id="search-input" placeholder="Tìm kiếm nhiệm vụ">
             </div>
         </div>
 
