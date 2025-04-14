@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Dự Án</title>
+    <link rel="stylesheet" href="../css/detail.css">
+</head>
+<body>
+    <!-- FORM ADD THÀNH VIÊN -->
+    <div class="modal" id="memberModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Thêm thành viên</h3>
+                <button class="close-button" id="memberClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addMemberForm">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" id="memberEmail" class="form-control" placeholder="Email của thành viên" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Vai trò</label>
+                        <select id="memberRole" class="form-select">
+                            <option value="" disabled selected>Vui lòng chọn vai trò</option>
+                            <option value="Frontend Developer">Frontend Developer</option>
+                            <option value="Backend Developer">Backend Developer</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cancel" id="memberCancel">Hủy</button>
+                <button class="btn btn-primary" id="memberSave">Lưu</button>
+            </div>
+        </div>
+    </div>
+    <!-- FORM ADD/SỬA NHIỆM VỤ -->
+    <div class="modal" id="taskModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Thêm/sửa nhiệm vụ</h3>
+                <button class="close-button" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="taskForm">
+                    <div class="form-group">
+                        <label class="form-label">Tên nhiệm vụ</label>
+                        <input type="text" id="taskName" class="form-control" placeholder="Tên nhiệm vụ">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Người phụ trách</label>
+                        <select id="taskAssignee" class="form-select">
+                            <option selected disabled>Chọn người phụ trách</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Trạng thái</label>
+                        <select id="taskStatus" class="form-select">
+                            <option value="1">To do</option>
+                            <option value="2">In Progress</option>
+                            <option value="3">Pending</option>
+                            <option value="4">Done</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Ngày bắt đầu</label>
+                        <div class="date-input-container">
+                            <input type="date" id="taskStartDate" class="date-input" placeholder="mm/dd/yyyy">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Hạn cuối</label>
+                        <div class="date-input-container">
+                            <input type="date" id="taskEndDate" class="date-input" placeholder="mm/dd/yyyy">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Độ ưu tiên</label>
+                        <select id="taskPriority" class="form-select">
+                            <option value="1">Thấp</option>
+                            <option value="2">Trung Bình</option>
+                            <option value="3">Cao</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tiến độ</label>
+                        <select id="taskProgress" class="form-select">
+                            <option value="1">Đúng tiến độ</option>
+                            <option value="2">Có rủi ro</option>
+                            <option value="3">Trễ hạn</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cancel" id="modalCancel">Hủy</button>
+                <button class="btn btn-primary" id="taskSave">Lưu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="home.html" class="nav-link">Quản Lý Dự Án</a>
+        </div>
+        <div class="nav-right">
+            <a href="" class="nav-link">Dự Án</a>
+            <a href="" class="nav-link">Nhiệm Vụ của tôi</a>
+            <a href="" id="logout" class="nav-link">Đăng Xuất</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="project-header">
+            <div class="project-info" id="project-info">
+                <h1 class="project-title" id="name-infor">Xây dựng website thương mại điện tử</h1>
+                <p class="project-description" id="des-infor">
+                    Dự án nhằm phát triển một nền tảng thương mại điện tử với các tính năng như giỏ hàng, thanh toán và quản lý sản phẩm.
+                </p>
+            </div>
+            <div class="team-section">
+                <div class="team-header">
+                    <h2 class="team-title">Thành viên</h2>
+                    <button class="add-member-btn" id="addMemberBtn">+ Thêm thành viên</button>
+                </div>
+                <div class="team-members" id="team-members">
+                    <!-- <div class="member">
+                        <div class="avatar blue">AN</div>
+                        <div class="member-name">An Nguyễn</div>
+                        <div class="member-role">Project owner</div>
+                    </div>
+                    <div class="member">
+                        <div class="avatar purple">BA</div>
+                        <div class="member-name">Bách Nguyễn</div>
+                        <div class="member-role">Frontend developer</div>
+                    </div> -->
+                    <div class="more-members">...</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-controls">
+            <button class="add-task-btn" id="addTaskBtn">+ Thêm nhiệm vụ</button>
+            <div class="task-filters">
+                <div class="sort-dropdown">
+                    <button class="sort-btn">Sắp xếp theo ▼</button>
+                </div>
+                <input type="text" class="search-input" placeholder="Tìm kiếm nhiệm vụ">
+            </div>
+        </div>
+
+        <div class="task-table">
+            <div class="task-list-title">Danh Sách Nhiệm Vụ</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên Nhiệm Vụ</th>
+                        <th>Người Phụ Trách</th>
+                        <th>Ưu Tiên</th>
+                        <th>Ngày Bắt Đầu</th>
+                        <th>Hạn Chót</th>
+                        <th>Tiến độ</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody id="taskList">
+                    <!-- Nhiệm vụ sẽ được hiển thị ở đây -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <footer class="footer">
+    © 2025 Quản Lý Dự Án Nhóm. All rights reserved.
+    </footer>
+    <script src="../js/detail.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

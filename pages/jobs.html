@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Nhiệm Vụ</title>
+    <link rel="stylesheet" href="../css/jobs.css"> <!-- Lớp CSS của bạn -->
+</head>
+
+<body>
+    <!-- NAVIGATION BAR -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="home.html" class="nav-link">Quản Lý Dự Án</a>
+        </div>
+        <div class="nav-right">
+            <a href="" class="nav-link">Dự Án</a>
+            <a href="" class="nav-link">Nhiệm Vụ của tôi</a>
+            <a href="" id="logout" class="nav-link">Đăng Xuất</a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <div class="project-header">
+            <div class="project-info" id="project-info">
+                <h1 class="project-title" id="name-infor">Quản Lý Nhiệm Vụ</h1>
+                <!-- Thông tin thêm nếu cần -->
+            </div>
+        </div>
+
+        <div class="task-controls">
+            <div class="task-filters">
+                <div class="sort-dropdown">
+                    <button class="sort-btn">Sắp xếp theo ▼</button>
+                </div>
+                <input type="text" class="search-input" placeholder="Tìm kiếm nhiệm vụ">
+            </div>
+        </div>
+
+        <div class="task-table">
+            <div class="task-list-title">Danh Sách Nhiệm Vụ</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên Nhiệm Vụ</th>
+                        <th>Ưu Tiên</th>
+                        <th>Trạng thái</th>
+                        <th>Ngày Bắt Đầu</th>
+                        <th>Hạn Chót</th>
+                        <th>Tiến độ</th>
+                    </tr>
+                </thead>
+                <tbody id="taskList">
+                    <!-- Nhiệm vụ sẽ được hiển thị ở đây -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        © 2025 Quản Lý Dự Án Nhóm. All rights reserved.
+    </footer>
+
+    <script src="../js/jobs.js"></script> <!-- Mã JavaScript của bạn -->
+</body>
+
+</html>
